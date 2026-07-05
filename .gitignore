@@ -33,9 +33,10 @@ tb3_pc_jazzy_ws/install/
 tb3_pc_jazzy_ws/log/
 tb3_pc_ws/my_bag_data/
 
-tb3_rpi5_ws/build/
-tb3_rpi5_ws/install/
-tb3_rpi5_ws/log/
+ssh/*
+!.ssh/config
+!.ssh/known_hosts
+
 
 *.pyc
 __pycache__/
