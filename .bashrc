@@ -209,21 +209,65 @@ alias gc='git clone'
 export PATH="$PATH:$HOME/bin"
 
 # ===== Git Backup Shortcut =====
-alias gs='git status'
-alias gl='git log --oneline --graph --all'
+
+alias gs='git status -sb'
+alias gl='git log --oneline --graph --decorate --all'
+alias gb='git branch'
+alias gd='git diff'
+alias glast='git log -1'
+alias gcom='git checkout main'
 
 gsts() {
     git status
 }
 
+# 원격 저장소를 확인하는 함수
+gremote() {
+    git remote -v
+}
+
 # gpull → 현재 브랜치를 rebase 방식으로 최신화
+gpull() {
+    branch=$(git branch --show-current)
+
+    echo "Repository : $(basename "$(git rev-parse --show-toplevel)")"
+    echo "Branch     : $branch"
+    echo
+
+    git pull --rebase origin "$branch"
+}
+
+# gpush → add → commit → pull --rebase → push
+gpush() {
+    msg="${1:-update}"
+    branch=$(git branch --show-current)
+
+    echo "Repository : $(basename "$(git rev-parse --show-toplevel)")"
+    echo "Branch     : $branch"
+    echo
+
+    git add -A || return
+
+    git diff --cached --quiet && {
+        echo "Nothing to commit."
+        return
+    }
+
+    git status
+
+    git commit -m "$msg" || return
+    git pull --rebase origin "$branch" || return
+    git push origin "$branch"
+}
+
+
+
 gpull()
 {
     branch=$(git branch --show-current)
     git pull --rebase origin "$branch"
 }
 
-# gpush → add → commit → pull --rebase → push
 gpush ()
 {
     msg="${1:-update}"
