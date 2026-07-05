@@ -211,22 +211,28 @@ export PATH="$PATH:$HOME/bin"
 # ===== Git Backup Shortcut =====
 alias gs='git status'
 alias gl='git log --oneline --graph --all'
-alias gp='git pull'
 
 gsts() {
     git status
 }
 
+# gpull → 현재 브랜치를 rebase 방식으로 최신화
+gpull()
+{
+    branch=$(git branch --show-current)
+    git pull --rebase origin "$branch"
+}
 
-gpush () 
-{ 
+# gpush → add → commit → pull --rebase → push
+gpush ()
+{
     msg="${1:-update}"
     branch=$(git branch --show-current)
 
     git add -A || return
     git status
 
-    git diff --cached --quiet && { 
+    git diff --cached --quiet && {
         echo "Nothing to commit."
         return
     }
