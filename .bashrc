@@ -290,3 +290,9 @@ gpush ()
 # =========================================================
 # End
 # =========================================================
+source /opt/ros/jazzy/setup.bash
+source ~/tb3_pc_jazzy_ws/install/setup.bash
+export TURTLEBOT3_MODEL=burger
+export ROS_DOMAIN_ID=20
+
+
