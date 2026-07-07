@@ -11,9 +11,23 @@
 
 !ros2_study/
 !ros2_study/**
+ros2_study/build/
+ros2_study/install/
+ros2_study/log/
+ros2_study/my_bag_data/
+
+!ros2_ws/
+!ros2_ws/**
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
 
 !tb3_pc_jazzy_ws/
 !tb3_pc_jazzy_ws/**
+tb3_pc_jazzy_ws/build/
+tb3_pc_jazzy_ws/install/
+tb3_pc_jazzy_ws/log/
+tb3_pc_jazzy_ws/my_bag_data/
 
 !rpi5_b321
 !rpi5_iptime
@@ -28,10 +42,6 @@
 !rpi5_headless_setup.sh
 !tb3_rpi5_ros2_jazzy_install.sh
 
-tb3_pc_jazzy_ws/build/
-tb3_pc_jazzy_ws/install/
-tb3_pc_jazzy_ws/log/
-tb3_pc_ws/my_bag_data/
 
 ssh/*
 !.ssh/config
