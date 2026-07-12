@@ -117,14 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 
-source /opt/ros/jazzy/setup.bash
-source /opt/ros/jazzy/setup.bash
-alias jazzy='source /opt/ros2/jazzy/setup.bash'
-
-
-
-
-
 
 # =========================================================
 # ROS2 Jazzy Desktop
@@ -147,10 +139,11 @@ export LC_ALL=en_US.UTF-8
 # =========================================================
 # Workspace alias
 # =========================================================
-alias sb='source ~/.bashrc'
-alias jazzy='source /opt/ros/jazzy/setup.bash'
+alias sb="source ~/.bashrc; echo \".bashrc is reloaded!\""
+alias jazzy='source /opt/ros/jazzy/setup.bash ; echo "ROS2 jazzzy activated !!" '
 
 alias ros2ws='source ~/ros2_ws/install/setup.bash 2>/dev/null || echo "ros2_ws is not built yet"'
+
 alias tb3='source ~/tb3_pc_jazzy_ws/env.sh'
 
 alias cw='cd ~/tb3_pc_jazzy_ws'
@@ -262,37 +255,18 @@ gpush() {
 
 
 
-gpull()
-{
-    branch=$(git branch --show-current)
-    git pull --rebase origin "$branch"
-}
-
-gpush ()
-{
-    msg="${1:-update}"
-    branch=$(git branch --show-current)
-
-    git add -A || return
-    git status
-
-    git diff --cached --quiet && {
-        echo "Nothing to commit."
-        return
-    }
-
-    git commit -m "$msg" || return
-    git pull --rebase origin "$branch" || return
-    git push origin "$branch"
-}
-
-
 # =========================================================
 # End
 # =========================================================
-source /opt/ros/jazzy/setup.bash
-source ~/tb3_pc_jazzy_ws/install/setup.bash
-export TURTLEBOT3_MODEL=burger
 export ROS_DOMAIN_ID=20
+source /opt/ros/jazzy/setup.bash
+echo "ROS2 jazzy is activated !!"
+
+source ~/tb3_pc_jazzy_ws/install/setup.bash
+export ROS_DOMAIN_ID=20
+export TURTLEBOT3_MODEL=burger
+echo "ROS2 DOMAIN_ID = 20"
+echo "Turtlebot3 burger is used"
 
 
+alias turtlesim_sw='LIBGL_ALWAYS_SOFTWARE=1 ros2 run turtlesim turtlesim_node'

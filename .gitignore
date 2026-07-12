@@ -9,6 +9,9 @@
 !bin/
 !bin/**
 
+!venvs/
+!vnevs/**
+
 !ros2_study/
 !ros2_study/**
 ros2_study/build/
